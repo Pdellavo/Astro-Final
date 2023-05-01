@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astronomy Equations</title>
+    <h2>Peter Della Volpe</h2>
+    <h3>Astronomy 101</h3>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+
+            background-image: url("https://cloudfront-us-east-1.images.arcpublishing.com/dmn/5S34JKPIXHYGTP2OHWRG4OJRQM.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        h3 {
+            text-align: center;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        form {
+            background-color: #5A5A5A;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input {
+            display: block;
+            width: 100%;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        button {
+            display: inline-block;
+            padding: 6px 12px;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            color: #fff;
+            background-color: #337ab7;
+            border-color: #2e6da4;
+            margin-bottom: 15px;
+        }
+        p {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        function calculateHubblesLaw() {
+            const hubble = parseFloat(document.getElementById("hubble").value);
+            const distance = parseFloat(document.getElementById("distance").value);
+            const velocity = hubble * distance;
+            document.getElementById("hubbles-output").innerHTML = "Recession Velocity: " + velocity.toFixed(2) + " km/s";
+        }
+
+
+        function calculateEscapeVelocity() {
+            const mass2 = parseFloat(document.getElementById("mass2").value);
+            const radius2 = parseFloat(document.getElementById("radius2").value);
+            const G = 6.67430 * Math.pow(10, -11);
+            const escapeVelocity = Math.sqrt((2 * G * mass2) / radius2);
+            document.getElementById("escape-output").innerHTML = "Escape Velocity: " + escapeVelocity.toFixed(2) + " m/s";
+        }
+
+
+        function calculateNewtonsLaw() {
+            const mass1 = parseFloat(document.getElementById("mass1").value);
+            const mass12 = parseFloat(document.getElementById("mass12").value);
+            const radius1 = parseFloat(document.getElementById("radius1").value);
+            const G = 6.67430 * Math.pow(10, -11);
+            const force = G * ((mass1 * mass12) / Math.pow(radius1, 2));
+            document.getElementById("newtons-output").innerHTML = "Gravitational Force: " + force.toFixed(2) + " N";
+        }
+
+
+        function calculateParallaxEquation() {
+            const parallax = parseFloat(document.getElementById("parallax").value);
+            const distance = 1 / parallax;
+            document.getElementById("parallax-output").innerHTML = "Distance (parsecs): " + distance.toFixed(2);
+        }
+
+        function calculateFluxEquation() {
+            const luminosity = parseFloat(document.getElementById("luminosity").value);
+            const distance = parseFloat(document.getElementById("flux-distance").value);
+            const flux = luminosity / (4 * Math.PI * Math.pow(distance, 2));
+            document.getElementById("flux-output").innerHTML = "Flux: " + flux.toFixed(2) + " Watts/m²";
+        }
+
+        function calculateLuminosityEquation() {
+            const flux = parseFloat(document.getElementById("flux").value);
+            const distance = parseFloat(document.getElementById("luminosity-distance").value);
+            const luminosity = flux * (4 * Math.PI * Math.pow(distance, 2));
+            document.getElementById("luminosity-output").innerHTML = "Luminosity: " + luminosity.toFixed(2) + " Watts";
+        }
+        function calculateWiensLaw() {
+            const temperature = parseFloat(document.getElementById("temperature").value);
+            const constant = 2.898 * Math.pow(10, 6); // Wien's constant in nanometers
+            const peakWavelength = constant / temperature;
+            document.getElementById("wiens-output").innerHTML = "Peak Wavelength: " + peakWavelength.toFixed(2) + " nm";
+        }
+
+        function calculateDopplerEquation() {
+            const speed = parseFloat(document.getElementById("speed").value);
+            const speedOfLight = 299792.458; // speed of light in km/s
+            const wavelength = parseFloat(document.getElementById("wavelength").value);
+            const dopplerShift = wavelength * (speed / speedOfLight);
+            document.getElementById("doppler-output").innerHTML = "Doppler Shift: " + dopplerShift.toFixed(2) + " nm";
+        }
+
+    </script>
+</head>
+<body>
+<h1>Astronomy Equations</h1>
+
+<!-- Parallax Equation -->
+<form>
+    <h2>Parallax Equation</h2>
+    <h4>Distance (parsecs) = 1 / Parallax angle (arcseconds)</h4>
+
+    <label>Parallax angle (arcseconds): <input type="number" id="parallax" step="0.01" value="1"></label>
+    <button type="button" onclick="calculateParallaxEquation()">Calculate</button>
+    <p id="parallax-output"></p>
+</form>
+
+<!-- Flux Equation -->
+<form>
+    <h2>Flux Equation</h2>
+    <h4>Flux = Luminosity / (4 * π * Distance²)</h4>
+    <label>Luminosity (Watts): <input type="number" id="luminosity" step="0.01" value="1"></label>
+    <label>Distance (meters): <input type="number" id="flux-distance" step="0.01" value="1"></label>
+    <button type="button" onclick="calculateFluxEquation()">Calculate</button>
+    <p id="flux-output"></p>
+</form>
+
+<!-- Luminosity Equation -->
+<form>
+    <h2>Luminosity Equation</h2>
+    <h4>Luminosity = Flux * (4 * π * Distance²)</h4>
+    <label>Flux (Watts/m²): <input type="number" id="flux" step="0.01" value="1"></label>
+    <label>Distance (meters): <input type="number" id="luminosity-distance" step="0.01" value="1"></label>
+    <button type="button" onclick="calculateLuminosityEquation()">Calculate</button>
+    <p id="luminosity-output"></p>
+</form>
+
+<!-- Wien's Law -->
+<form>
+    <h2>Wien's Law</h2>
+    <h4>Peak Wavelength (nm) = 2.898 * 10⁶ / Temperature (K)</h4>
+    <label>Temperature (K): <input type="number" id="temperature" step="0.01" value="5000"></label>
+    <button type="button" onclick="calculateWiensLaw()">Calculate</button>
+    <p id="wiens-output"></p>
+</form>
+
+<!-- Doppler Equation -->
+<form>
+    <h2>Doppler Equation</h2>
+    <h4>Doppler Shift (nm) = Wavelength * (Speed / Speed of Light)</h4>
+    <label>Speed (km/s): <input type="number" id="speed" step="0.01" value="100"></label>
+    <label>Wavelength (nm): <input type="number" id="wavelength" step="0.01" value="500"></label>
+    <button type="button" onclick="calculateDopplerEquation()">Calculate</button>
+    <p id="doppler-output"></p>
+</form>
+
+<!-- Newton's Law of Gravitation -->
+<form>
+    <h2>Newton's Law of Gravitation</h2>
+    <h4>Gravitational Force (N) = (G * Mass₁ * Mass₂) / Radius²</h4>
+    <label>Mass₁ (kg): <input type="number" id="mass1" step="0.01" value="1"></label>
+    <label>Mass₂ (kg): <input type="number" id="mass12" step="0.01" value="1"></label>
+    <label>Radius (m): <input type="number" id="radius1" step="0.01" value="1"></label>
+    <button type="button" onclick="calculateNewtonsLaw()">Calculate</button>
+    <p id="newtons-output"></p>
+</form>
+
+<!-- Escape Velocity -->
+<form>
+    <h2>Escape Velocity</h2>
+    <h4>Escape Velocity (m/s) = √((2 * G * Mass) / Radius)</h4>
+    <label>Mass (kg): <input type="number" id="mass2" step="0.01" value="1"></label>
+    <label>Radius (m): <input type="number" id="radius2" step="0.01" value="1"></label>
+    <button type="button" onclick="calculateEscapeVelocity()">Calculate</button>
+    <p id="escape-output"></p>
+</form>
+
+<
+
+<!-- Hubble's Law -->
+<form>
+    <h2>Hubble's Law</h2>
+    <h4>Recessional Velocity (km/s) = Hubble Constant * Distance (Mpc)</h4>
+    <label>Hubble Constant (km/s/Mpc): <input type="number" id="hubble" step="0.01" value="1"></label>
+    <label>Distance (Mpc): <input type="number" id="distance" step="0.01" value="1"></label>
+    <button type="button" onclick="calculateHubblesLaw()">Calculate</button>
+    <p id="hubbles-output"></p>
+</form>
+
+
+</body>
+
+</html>
