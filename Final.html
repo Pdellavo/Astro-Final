@@ -88,6 +88,25 @@
         }
     </style>
     <script>
+        function calculateKeplersLaw() {
+            const radiusElement = document.getElementById("radius3");
+            const massElement = document.getElementById("mass3");
+            const outputElement = document.getElementById("keplers-output");
+
+            const radius = parseFloat(radiusElement.value);
+            const mass = parseFloat(massElement.value);
+
+            if (isNaN(radius) || isNaN(mass)) {
+                outputElement.textContent = "Please enter valid values.";
+                return;
+            }
+
+            const periodSquared = (Math.pow(radius, 3) / mass);
+            const period = Math.sqrt(periodSquared);
+
+            outputElement.textContent = `Period: ${period.toFixed(2)} years`;
+        }
+
         function calculateHubblesLaw() {
             const hubble = parseFloat(document.getElementById("hubble").value);
             const distance = parseFloat(document.getElementById("distance").value);
@@ -235,6 +254,17 @@
     <button type="button" onclick="calculateHubblesLaw()">Calculate</button>
     <p id="hubbles-output"></p>
 </form>
+
+<!-- keplers law -->
+<form>
+    <h2>Kepler's Law</h2>
+    <h4>Period² (years) = (Radius³ (AU) / Mass (solar masses))</h4>
+    <label>Radius (AU): <input type="number" id="radius3" step="0.01" value="1"></label>
+    <label>Mass (solar masses): <input type="number" id="mass3" step="0.01" value="1"></label>
+    <button type="button" onclick="calculateKeplersLaw()">Calculate</button>
+    <p id="keplers-output"></p>
+</form>
+
 
 
 </body>
